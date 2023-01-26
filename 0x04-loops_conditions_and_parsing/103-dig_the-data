@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
-# script to discplay the occurence number ip and http code in list format
-awk '{ print $1,$9 }' apache-access.log | sort | uniq -c | sort -rn
+# This script parses Apache log files in list format.
+#   Groups visitors by IP and HTTP status code.
+#   Displays the number of occurrences, IP, and HTTP status
+#+  code of each log, in sorted order.
+
+myfile="apache-access.log"
+awk -F' ' '{ print $1, $9}' $myfile | sort | uniq -c|sort -nr
